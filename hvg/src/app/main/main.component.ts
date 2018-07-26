@@ -17,4 +17,13 @@ export class MainComponent implements OnInit {
     this.subsciptionTypes = this.dataService.getSubscriptionTypes();
   }
 
+  getFirstTwosbt(): SubscriptionType[] {
+    return [this.subsciptionTypes[0], this.subsciptionTypes[1]];
+  }
+  getsecondTwosbt(): SubscriptionType[] {
+    return [this.subsciptionTypes[0], this.subsciptionTypes[1]];
+  }
+
+
+
 }

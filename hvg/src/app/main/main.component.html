@@ -1,24 +1,25 @@
+<nav class="navbar fixed-top navbar-light bg-light">
+    <a class="navbar-brand" href="#">Fixed top</a>
+</nav>
 <div class="container">
-  <div class="row">
-    <div class="col-md-4">
-      <div>
-        <p>1</p>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div>
-        <p>1</p>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div>
-        <p>1</p>
-      </div>
-    </div>
-  </div>
-  <div *ngFor="let sbt of subsciptionTypes" class="row">
+  <div class="mainWindow">
     <div class="row">
-      {{sbt.title}}
+      <div *ngFor="let sbs of getsecondTwosbt()" class="col-md-6">
+        <div class="subsciptionTypeDiv">
+            <div class="subsciptionTypeImg">
+                <img width="100%" src={{sbs.image}}>
+            </div>
+          <div class="subsciptionTypeTitle">
+            <p>
+              {{sbs.title}}
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
+<nav class="navbar fixed-bottom navbar-light bg-light">
+    <a class="navbar-brand" href="#">Fixed top</a>
+</nav>
+

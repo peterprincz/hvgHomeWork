@@ -1,1 +1,26 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
+
+.mainWindow {
+  margin-top: 150px;
+}
+
+.subsciptionTypeTitle{
+  color: #000;
+  font-weight: bold;
+  font-size: 21px;
+  font-family: aleo, serif;
+  line-height: 120%;
+}
+
+.subsciptionTypeDiv{
+  border: 1px solid #949494;
+}
+
+.navbar-light{
+  background-color:#e25900 !important;
+
+}
+.navbar-brand{
+  color:white !important;
+}
+
