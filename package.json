@@ -1,0 +1,19 @@
+{
+  "name": "hvg",
+  "version": "1.0.0",
+  "description": "hvg homework",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/peterprincz/hvgHomeWork.git"
+  },
+  "author": "princz peter",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/peterprincz/hvgHomeWork/issues"
+  },
+  "homepage": "https://github.com/peterprincz/hvgHomeWork#readme"
+}

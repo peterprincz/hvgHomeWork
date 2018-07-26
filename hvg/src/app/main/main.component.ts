@@ -1,4 +1,6 @@
+import { DataService } from './services/data.service';
 import { Component, OnInit } from '@angular/core';
+import { SubscriptionType } from './model/SubscriptionType';
 
 @Component({
   selector: 'app-main',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainComponent implements OnInit {
 
-  constructor() { }
+  subsciptionTypes: SubscriptionType[];
+
+  constructor(private dataService: DataService) { }
 
   ngOnInit() {
+    this.subsciptionTypes = this.dataService.getSubscriptionTypes();
   }
 
 }
