@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/peterprincz/hvgHomeWork/issues"
   },
-  "homepage": "https://github.com/peterprincz/hvgHomeWork#readme"
+  "homepage": "https://github.com/peterprincz/hvgHomeWork#readme",
+  "devDependencies": {
+    "@angular-devkit/build-angular": "^0.7.1"
+  }
 }

@@ -1,7 +1,31 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
 
+.body{
+  background-color:#f1f1f1;
+}
+
+.row{
+  margin-right: 0px;
+  margin-left: 0px;
+}
+
 .mainWindow {
-  margin-top: 150px;
+  background-color:white;
+  padding-top: 60px;
+  padding-bottom: 90px;
+}
+
+.navbar{
+  min-height: 90px;
+}
+
+.header-top{
+  background-color:red;
+  padding-top:30px;
+}
+
+.card{
+  padding:0px;
 }
 
 .subsciptionTypeTitle{
@@ -10,10 +34,11 @@
   font-size: 21px;
   font-family: aleo, serif;
   line-height: 120%;
+  font: normal 'PT Sans', sans-serif;
 }
 
-.subsciptionTypeDiv{
-  border: 1px solid #949494;
+.subsciptionDiv{
+  padding: 15px;
 }
 
 .navbar-light{

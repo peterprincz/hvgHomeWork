@@ -1,25 +1,27 @@
-<nav class="navbar fixed-top navbar-light bg-light">
+<div class="container" style="margin: auto">
+  <nav class="navbar navbar-light bg-light">
     <a class="navbar-brand" href="#">Fixed top</a>
-</nav>
-<div class="container">
+  </nav>
   <div class="mainWindow">
     <div class="row">
-      <div *ngFor="let sbs of getsecondTwosbt()" class="col-md-6">
-        <div class="subsciptionTypeDiv">
-            <div class="subsciptionTypeImg">
-                <img width="100%" src={{sbs.image}}>
-            </div>
-          <div class="subsciptionTypeTitle">
-            <p>
+      <div *ngFor="let sbs of getSbsForDesktop()" class="subsciptionDiv col-md-6 col-s-12">
+        <div class="card">
+          <div class="card-img-top">
+            <img width="100%" [src]="sbs.image">
+          </div>
+          <div class="card-body">
+            <h5 class="card-text subsciptionTypeTitle">
               {{sbs.title}}
+            </h5>
+            <p class="card-text">
+              <small class="text-muted">{{sbs.published}}</small>
             </p>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
-<nav class="navbar fixed-bottom navbar-light bg-light">
+  <nav class="navbar navbar-light bg-light">
     <a class="navbar-brand" href="#">Fixed top</a>
-</nav>
-
+  </nav>
+</div>
