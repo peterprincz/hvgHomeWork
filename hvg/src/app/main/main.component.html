@@ -1,10 +1,29 @@
 <div class="container" style="margin: auto">
   <nav class="navbar navbar-light bg-light">
-    <a class="navbar-brand" href="#">Fixed top</a>
+    <h5 class="navbar-brand" >Hvg Shop</h5>
   </nav>
   <div class="mainWindow">
+    <div class="row header">
+      <div class="col-lg-9 col-md-12" >
+        <nav class="nav nav-pills nav-justified">
+
+            <a class="nav-item nav-link active" (click)="setAspect('title')" href="#">Név</a>
+            <a class="nav-item nav-link navBtn" (click)="setAspect('price')" href="#">Ár</a>
+            <a class="nav-item nav-link navBtn" (click)="setAspect('date')" href="#">Megjelenés</a>
+        </nav>
+      </div>
+      <div class="col-lg-3 col-md-12">
+          <ul class="pagination pagination-sm justify-content-center">
+              <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+              <li class="page-item"><a class="page-link" href="#">1</a></li>
+              <li class="page-item"><a class="page-link" href="#">2</a></li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item"><a class="page-link" href="#">Next</a></li>
+            </ul>
+      </div>
+    </div>
     <div class="row">
-      <div *ngFor="let sbs of getSbsForDesktop()" class="subsciptionDiv col-md-6 col-s-12">
+      <div *ngFor="let sbs of getFirstTwo()" class="subsciptionDiv col-md-6 col-s-12">
         <div class="card">
           <div class="card-img-top">
             <img width="100%" [src]="sbs.image">
@@ -13,6 +32,9 @@
             <h5 class="card-text subsciptionTypeTitle">
               {{sbs.title}}
             </h5>
+            <h5 class="card-text subsciptionTypeTitle">
+                {{sbs.price}} {{sbs.currency}}
+              </h5>
             <p class="card-text">
               <small class="text-muted">{{sbs.published}}</small>
             </p>
@@ -22,6 +44,6 @@
     </div>
   </div>
   <nav class="navbar navbar-light bg-light">
-    <a class="navbar-brand" href="#">Fixed top</a>
+    <h5 class="navbar-brand" href="#">Lorem ipsum</h5>
   </nav>
 </div>

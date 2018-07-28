@@ -8,21 +8,26 @@ import { HttpClient } from '@angular/common/http';
 })
 export class DataService {
 
-  constructor(private http: HttpClient) { }
+  subscriptionTypes: SubscriptionType[];
 
-  public getSubscriptionTypes(): SubscriptionType[] {
-    const subscriptionTypes: SubscriptionType[] = [];
-    this.http.get('assets/hvg_feladat_json.json')
-      .subscribe(function(data: any) {
+  constructor(private http: HttpClient) {
+    this.subscriptionTypes = [];
+    this.getData();
+  }
+
+  public getData() {
+    const promise: Promise<SubscriptionType[]> = new Promise((resolve, reject) => {
+      this.http.get('assets/hvg_feladat_json.json').toPromise().then((data: any) => {
         const hvgProducts = data['HVG termékek'];
         const hvgSubscriptions = hvgProducts['HVG Előfizetés'];
         for (let key in hvgSubscriptions) {
           if (hvgSubscriptions.hasOwnProperty(key)) {
-              subscriptionTypes.push(hvgSubscriptions[key]);
+              this.subscriptionTypes.push(hvgSubscriptions[key]);
           }
         }
-    }
-    );
-    return subscriptionTypes;
+        resolve();
+    });
+  });
+  return promise;
   }
 }
