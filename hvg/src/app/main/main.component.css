@@ -10,31 +10,33 @@
   padding-bottom: 90px;
 }
 
+.order-nav-bar, .page-nav-bar{
+  margin-top: 10px;
+}
+
 .navBtn{
   font: normal 14px/1 'PT Sans', sans-serif;
-  color:#7e7e7e;
+  color:black
+}
+
+.navBtn:hover{
+  background-color:#e9ecef;
+  color:#007bff;
 }
 
 .header {
-  padding-top:20px;
   box-shadow: 0 10px 20px -10px rgba(0, 0, 0, 0.3);
-  padding-bottom: 8px;
 }
 
 .navbar{
   min-height: 70px;
 }
 
-.header-top{
-  background-color:red;
-  padding-top:30px;
-}
-
 .card{
   padding:0px;
 }
 
-.subsciptionTypeTitle{
+.subsciptionTitle, .subsciptionPrice{
   color: #000;
   font-weight: bold;
   font-size: 21px;
@@ -49,7 +51,6 @@
 
 .navbar-light{
   background-color:#e25900 !important;
-
 }
 .navbar-brand{
   color:white !important;

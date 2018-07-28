@@ -17,7 +17,7 @@ import { SortService } from './services/sort.service';
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.css'],
   animations: [
-    trigger('flyInOut', [
+    trigger('easeIn', [
       state('in', style({transform: 'translateX(0)'})),
       transition(':enter', [
         style({opacity: 0}),
@@ -41,13 +41,14 @@ export class MainComponent implements OnInit {
     this.selectedSortOrder = 'asc';
   }
 
-  getFirstTwo(): SubscriptionType[] {
+  getSubscriptions(): SubscriptionType[] {
     let subscriptionTypes: SubscriptionType[];
     subscriptionTypes = this.dataService.subscriptionTypes.slice();
-    return this.sortService.sortSbs(
+    return this.sortService.sortSubscriptions(
                       subscriptionTypes,
                       this.selectedSortAspect,
-                      this.selectedSortOrder).slice((this.selectedPage - 1) * 4, this.selectedPage * 4);
+                      this.selectedSortOrder)
+                      .slice((this.selectedPage - 1) * 4, this.selectedPage * 4);
   }
 
   setAspect(aspect: string): void {
@@ -64,7 +65,6 @@ export class MainComponent implements OnInit {
   }
 
   changePage(value: number): void {
-    console.log('anyad');
     this.selectedPage = value;
   }
 }
