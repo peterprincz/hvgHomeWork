@@ -1,5 +1,5 @@
 import { DataService } from './services/data.service';
-import { Component, OnInit, AfterViewChecked } from '@angular/core';
+import { Component, OnInit, AfterViewChecked, HostListener } from '@angular/core';
 import { SubscriptionType } from './model/SubscriptionType';
 import {
   trigger,
@@ -10,12 +10,14 @@ import {
 } from '@angular/animations';
 import { ChangeDetectorRef } from '@angular/core';
 import { SortService } from './services/sort.service';
+import { DomSanitizer } from '@angular/platform-browser';
+
 
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
-  styleUrls: ['./main.component.css'],
+  styleUrls: ['./main.component.scss'],
   animations: [
     trigger('easeIn', [
       state('in', style({transform: 'translateX(0)'})),
@@ -31,15 +33,29 @@ export class MainComponent implements OnInit {
   selectedSortAspect: string;
   selectedSortOrder: string;
   selectedPage: number;
+  isUserScrolling: boolean;
+  ScrollTimer: any;
 
-  constructor(private dataService: DataService, private sortService: SortService) {
+  constructor(private dataService: DataService, private sortService: SortService, private sanitizer: DomSanitizer) {
     this.selectedPage = 1;
   }
 
   ngOnInit() {
     this.selectedSortAspect = 'title';
     this.selectedSortOrder = 'asc';
+    this.isUserScrolling = false;
   }
+
+
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    this.isUserScrolling = true;
+    clearTimeout(this.ScrollTimer);
+    this.ScrollTimer = setTimeout(() => {
+      this.isUserScrolling = false;
+    }, 600);
+    }
+
 
   getSubscriptions(): SubscriptionType[] {
     let subscriptionTypes: SubscriptionType[];
@@ -62,6 +78,12 @@ export class MainComponent implements OnInit {
       this.selectedSortAspect = aspect;
       this.selectedSortOrder = 'asc';
     }
+  }
+
+  getImage(subscriptionType: SubscriptionType): any {
+    return this.sanitizer.bypassSecurityTrustStyle(`linear-gradient(rgba(29, 29, 29, 0),
+                            rgba(16, 16, 23, 0.5)),
+                            url(${subscriptionType.image})`);
   }
 
   changePage(value: number): void {

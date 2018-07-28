@@ -1,42 +1,71 @@
 <div class="container" style="margin: auto">
   <nav class="navbar navbar-light bg-light">
-    <h5 class="navbar-brand" >Hvg Shop</h5>
+    <a class="navbar-brand" href="#">
+      <img src="http://hvg.hu/Content/redesign/i/hvg-hu-logo.svg" class="d-inline-block align-top" alt="">
+    </a>
   </nav>
-  <div class="mainWindow">
+  <div class="main-window">
     <div class="row header">
-      <div class="col-lg-9 order-nav-bar col-md-12" >
+      <div class="col-lg-9 order-nav-bar col-md-12">
         <nav class="nav nav-pills nav-justified">
-            <a [ngClass]="{'active': selectedSortAspect == 'title' }" class="nav-item nav-link navBtn" (click)="setAspect('title')" href="#">Név</a>
-            <a [ngClass]="{'active': selectedSortAspect == 'price' }" class="nav-item nav-link navBtn" (click)="setAspect('price')" href="#">Ár</a>
-            <a [ngClass]="{'active': selectedSortAspect == 'published' }" class="nav-item nav-link navBtn" (click)="setAspect('published')" href="#">Megjelenés</a>
+          <a [ngClass]="{'active': selectedSortAspect == 'title' }" class="nav-item nav-link sort-aspect-button" (click)="setAspect('title')" href="#">Név</a>
+          <a [ngClass]="{'active': selectedSortAspect == 'price' }" class="nav-item nav-link sort-aspect-button" (click)="setAspect('price')" href="#">Ár</a>
+          <a [ngClass]="{'active': selectedSortAspect == 'published' }" class="nav-item nav-link sort-aspect-button" (click)="setAspect('published')"
+            href="#">Megjelenés</a>
         </nav>
       </div>
       <div class="col-lg-3 page-nav-bar col-md-12">
-          <ul class="pagination pagination-sm justify-content-center">
-              <li (click)="changePage(1)" class="page-item"><p class="page-link" >Previous</p></li>
-              <li (click)="changePage(1)" [ngClass]="{'active': selectedPage == '1' }" class="page-item"><p class="page-link" >1</p></li>
-              <li (click)="changePage(2)" [ngClass]="{'active': selectedPage == '2' }" class="page-item"><p class="page-link" >2</p></li>
-              <li (click)="changePage(3)" [ngClass]="{'active': selectedPage == '3' }" class="page-item"><p class="page-link" >3</p></li>
-              <li (click)="changePage(3)" class="page-item"><p class="page-link" >Next</p></li>
-            </ul>
+        <ul class="pagination pagination-sm justify-content-center">
+          <li (click)="changePage(1)" class="page-item">
+            <p class="page-link">Previous</p>
+          </li>
+          <li (click)="changePage(1)" [ngClass]="{'active': selectedPage == '1' }" class="page-item">
+            <p class="page-link">1</p>
+          </li>
+          <li (click)="changePage(2)" [ngClass]="{'active': selectedPage == '2' }" class="page-item">
+            <p class="page-link">2</p>
+          </li>
+          <li (click)="changePage(3)" [ngClass]="{'active': selectedPage == '3' }" class="page-item">
+            <p class="page-link">3</p>
+          </li>
+          <li (click)="changePage(3)" class="page-item">
+            <p class="page-link">Next</p>
+          </li>
+        </ul>
       </div>
     </div>
     <div class="row">
-      <div [@easeIn]='subscription' *ngFor="let subscription of getSubscriptions()" class="subsciptionDiv col-md-6 col-s-12">
-        <div class="card">
-          <div class="card-img-top">
-            <img width="100%" [src]="subscription.image">
+      <div [@easeIn]='subscription'
+            *ngFor="let subscription of getSubscriptions()"
+            class="subsciption-div col-md-6 col-s-12"
+            >
+        <div class="card subsciption-card">
+          <div class="card-img-top card-image-div">
+            <img class="img-responsive" width="100%" [src]="subscription.image">
           </div>
-          <div class="card-body">
-            <h5 class="card-text subsciptionTitle">
-              {{subscription.title}}
-            </h5>
-            <h5 class="card-text subsciptionPrice">
-                {{subscription.price}} {{subscription.currency}}
-              </h5>
-            <p class="card-text">
-              <small class="text-muted">{{subscription.published}}</small>
-            </p>
+          <div class="card-body subsciption-card-body">
+            <div class="row">
+              <div class="col-12 subsciption-card-title">
+                <h5 class="card-text">
+                  {{subscription.title}}
+                </h5>
+              </div>
+            </div>
+            <div class="row subscription-price">
+              <div class="col-md-6 col-s-12 subsciption-details">
+                <h5 class="card-text">
+                  {{subscription.price}} {{subscription.currency}}
+                </h5>
+                <p class="card-text">
+                  <small class="text-muted">{{subscription.published}}</small>
+                </p>
+              </div>
+              <div class="col-md-6 col-s-12 subsciptionButtonDiv">
+                <button class="subsciption-button">
+                  Előrendel
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
