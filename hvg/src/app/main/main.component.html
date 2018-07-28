@@ -6,24 +6,23 @@
     <div class="row header">
       <div class="col-lg-9 col-md-12" >
         <nav class="nav nav-pills nav-justified">
-
-            <a class="nav-item nav-link active" (click)="setAspect('title')" href="#">Név</a>
-            <a class="nav-item nav-link navBtn" (click)="setAspect('price')" href="#">Ár</a>
-            <a class="nav-item nav-link navBtn" (click)="setAspect('date')" href="#">Megjelenés</a>
+            <a [ngClass]="{'active': selectedSortAspect == 'title' }" class="nav-item nav-link navBtn" (click)="setAspect('title')" href="#">Név</a>
+            <a [ngClass]="{'active': selectedSortAspect == 'price' }" class="nav-item nav-link navBtn" (click)="setAspect('price')" href="#">Ár</a>
+            <a [ngClass]="{'active': selectedSortAspect == 'published' }" class="nav-item nav-link navBtn" (click)="setAspect('published')" href="#">Megjelenés</a>
         </nav>
       </div>
       <div class="col-lg-3 col-md-12">
           <ul class="pagination pagination-sm justify-content-center">
-              <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-              <li class="page-item"><a class="page-link" href="#">1</a></li>
-              <li class="page-item"><a class="page-link" href="#">2</a></li>
-              <li class="page-item"><a class="page-link" href="#">3</a></li>
-              <li class="page-item"><a class="page-link" href="#">Next</a></li>
+              <li (click)="changePage(1)" class="page-item"><p class="page-link" >Previous</p></li>
+              <li (click)="changePage(1)" [ngClass]="{'active': selectedPage == '1' }" class="page-item"><p class="page-link" >1</p></li>
+              <li (click)="changePage(2)" [ngClass]="{'active': selectedPage == '2' }" class="page-item"><p class="page-link" >2</p></li>
+              <li (click)="changePage(3)" [ngClass]="{'active': selectedPage == '3' }" class="page-item"><p class="page-link" >3</p></li>
+              <li (click)="changePage(3)" class="page-item"><p class="page-link" >Next</p></li>
             </ul>
       </div>
     </div>
     <div class="row">
-      <div *ngFor="let sbs of getFirstTwo()" class="subsciptionDiv col-md-6 col-s-12">
+      <div [@flyInOut]='sbs' *ngFor="let sbs of getFirstTwo()" class="subsciptionDiv col-md-6 col-s-12">
         <div class="card">
           <div class="card-img-top">
             <img width="100%" [src]="sbs.image">

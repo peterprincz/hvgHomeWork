@@ -9,6 +9,7 @@ import {
   transition
 } from '@angular/animations';
 import { ChangeDetectorRef } from '@angular/core';
+import { SortService } from './services/sort.service';
 
 
 @Component({
@@ -18,12 +19,9 @@ import { ChangeDetectorRef } from '@angular/core';
   animations: [
     trigger('flyInOut', [
       state('in', style({transform: 'translateX(0)'})),
-      transition('void => *', [
-        style({transform: 'translateX(200%)'}),
-        animate(700)
-      ]),
-      transition('* => void', [
-        animate(100, style({transform: 'translateX(100%)'}))
+      transition(':enter', [
+        style({opacity: 0}),
+        animate('1000ms ease-in-out', style({ opacity: 1 }))
       ])
     ])
   ]
@@ -32,9 +30,10 @@ export class MainComponent implements OnInit {
 
   selectedSortAspect: string;
   selectedSortOrder: string;
+  selectedPage: number;
 
-  constructor(private dataService: DataService, private cdRef: ChangeDetectorRef) {
-
+  constructor(private dataService: DataService, private sortService: SortService) {
+    this.selectedPage = 1;
   }
 
   ngOnInit() {
@@ -43,31 +42,17 @@ export class MainComponent implements OnInit {
   }
 
   getFirstTwo(): SubscriptionType[] {
-    let result: = this.dataService.subscriptionTypes;
-    if (this.selectedSortAspect === 'title') {
-      result = this.sortsbsByTitle();
-    } else {
-      result = this.dataService.subscriptionTypes.sort();
-    }
-    if (this.selectedSortOrder === 'desc') {
-      result = result.reverse();
-    }
-    console.log(result);
-    return result;
+    let subscriptionTypes: SubscriptionType[];
+    subscriptionTypes = this.dataService.subscriptionTypes.slice();
+    return this.sortService.sortSbs(
+                      subscriptionTypes,
+                      this.selectedSortAspect,
+                      this.selectedSortOrder).slice((this.selectedPage - 1) * 4, this.selectedPage * 4);
   }
-
-  sortsbsByTitle(): SubscriptionType[] {
-      return this.dataService.subscriptionTypes.sort((a, b) => {
-        const key: string = this.selectedSortAspect;
-        const left_variable: string = a[key];
-        const right_variable: string = b[key];
-        return this.HUAlphabetComparer(left_variable, right_variable);
-      });
-    }
 
   setAspect(aspect: string): void {
     if (aspect === this.selectedSortAspect) {
-      if (this.selectedSortOrder = 'asc') {
+      if (this.selectedSortOrder === 'asc') {
         this.selectedSortOrder = 'desc';
       } else {
         this.selectedSortOrder = 'asc';
@@ -78,13 +63,8 @@ export class MainComponent implements OnInit {
     }
   }
 
-  HUAlphabetComparer(wordOne: string, wordTwo: string): number {
-    if (wordOne.localeCompare(wordTwo) > 0) {
-      return -1;
-    }
-    return 1;
+  changePage(value: number): void {
+    console.log('anyad');
+    this.selectedPage = value;
   }
-
-
-
 }
