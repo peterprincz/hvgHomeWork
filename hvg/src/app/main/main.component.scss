@@ -12,18 +12,32 @@
 
 .header{
   max-height: 65px;
-  margin-top: 5px;
+  padding-top:5px;
+  margin-bottom: 5px;
+  padding-bottom: 5px;
   box-shadow: 0 10px 20px -10px rgba(0, 0, 0, 0.3);
 }
 
 .sort-aspect-button {
+  margin-left: 5px;
+  margin-right: 5px;
   font: normal 14px/1 "PT Sans", sans-serif;
-  color: black;
+  color: $secondary-color;
+  border:1px solid $secondary-color-faded;
+  transition: 0.5s;
 }
 
 .sort-aspect-button:hover {
   background-color: $secondary-color-faded;
   color: $secondary-color;
+}
+
+.pagination {
+     margin-bottom: 0px;
+}
+
+.page-link{
+  margin-bottom:0px;
 }
 
 .main-window {
@@ -34,7 +48,6 @@
 .subsciption-div {
   padding: 15px;
 }
-
 
 .subsciption-card {
   padding: 0px;
@@ -70,10 +83,11 @@
   height: 100%;
   font-weight: bold;
   font: normal "PT Sans", sans-serif;
-  transition: 1s;
+  transition: 0.7s;
 }
 
 .subsciption-button:hover {
+  cursor: pointer;
   background-color: $primary-color;
   color: $mainwindow-color;
 }

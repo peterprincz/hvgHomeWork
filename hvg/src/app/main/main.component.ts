@@ -33,14 +33,16 @@ export class MainComponent implements OnInit {
   selectedSortAspect: string;
   selectedSortOrder: string;
   selectedPage: number;
+  visitedPages = [];
   isUserScrolling: boolean;
   ScrollTimer: any;
 
   constructor(private dataService: DataService, private sortService: SortService, private sanitizer: DomSanitizer) {
-    this.selectedPage = 1;
+
   }
 
   ngOnInit() {
+    this.selectedPage = 1;
     this.selectedSortAspect = 'title';
     this.selectedSortOrder = 'asc';
     this.isUserScrolling = false;
@@ -86,7 +88,20 @@ export class MainComponent implements OnInit {
                             url(${subscriptionType.image})`);
   }
 
-  changePage(value: number): void {
-    this.selectedPage = value;
+  changePage(page: number): void {
+    if (page > 0 && !this.isPageEmpty(page)) {
+      this.visitedPages.push(this.selectedPage);
+      this.selectedPage = page;
+    }
+  }
+
+  changeToPreviousPage(): void {
+    if (this.visitedPages.length > 0) {
+      this.selectedPage = this.visitedPages.pop();
+    }
+  }
+
+  isPageEmpty(page: number): boolean {
+    return this.dataService.subscriptionTypes.length - (4 * (page - 1)) < 1;
   }
 }

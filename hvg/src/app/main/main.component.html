@@ -14,22 +14,22 @@
             href="#">Megjelenés</a>
         </nav>
       </div>
-      <div class="col-lg-3 page-nav-bar col-md-12">
+      <div class="col-lg-3  page-nav-bar col-md-12">
         <ul class="pagination pagination-sm justify-content-center">
-          <li (click)="changePage(1)" class="page-item">
-            <p class="page-link">Previous</p>
+          <li (click)="changeToPreviousPage()" [ngClass]="{'disabled': visitedPages.length < 1 }" class="page-item">
+            <p class="page-link">Vissza</p>
           </li>
-          <li (click)="changePage(1)" [ngClass]="{'active': selectedPage == '1' }" class="page-item">
+          <li (click)="changePage(1)" [ngClass]="{'active': selectedPage == 1 }" class="page-item">
             <p class="page-link">1</p>
           </li>
-          <li (click)="changePage(2)" [ngClass]="{'active': selectedPage == '2' }" class="page-item">
+          <li (click)="changePage(2)" [ngClass]="{'active': selectedPage == 2 }" class="page-item">
             <p class="page-link">2</p>
           </li>
-          <li (click)="changePage(3)" [ngClass]="{'active': selectedPage == '3' }" class="page-item">
+          <li (click)="changePage(3)" [ngClass]="{'active': selectedPage == 3 }" class="page-item">
             <p class="page-link">3</p>
           </li>
-          <li (click)="changePage(3)" class="page-item">
-            <p class="page-link">Next</p>
+          <li [ngClass]="{'disabled': isPageEmpty(selectedPage + 1) }" (click)="changePage(selectedPage + 1)" class="page-item">
+            <p class="page-link">Előre</p>
           </li>
         </ul>
       </div>
